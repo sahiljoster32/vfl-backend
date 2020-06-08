@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "80ab4e559726b76c9eabd34d9c3e7698e91294593e3c858d7664f8a9743d487c"
+            "sha256": "a619cc3fa52e1a30e3cbf27aca0cb3c454ac441a1a269a17e67bb0fc76f1aa04"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -39,6 +39,14 @@
             ],
             "index": "pypi",
             "version": "==19.3.0"
+        },
+        "babel": {
+            "hashes": [
+                "sha256:1aac2ae2d0d8ea368fa90906567f5c08463d98ade155c0c4bfedd6a0f7160e38",
+                "sha256:d670ea0b10f8b723672d3a6abeb87b565b244da220d76b4dba1b66269ec152d4"
+            ],
+            "index": "pypi",
+            "version": "==2.8.0"
         },
         "black": {
             "hashes": [
@@ -135,6 +143,14 @@
             ],
             "index": "pypi",
             "version": "==3.5.0"
+        },
+        "django-phonenumber-field": {
+            "hashes": [
+                "sha256:2ca3bb0ada0ebc164bd903a981a34f1202a4294006e520b0da961bd7ce9f20a4",
+                "sha256:d4580cc3352f4433962825f9927e6669852c1b40ec484fcb5a74064dabc1201a"
+            ],
+            "index": "pypi",
+            "version": "==4.0.0"
         },
         "django-rest-swagger": {
             "hashes": [
@@ -285,6 +301,14 @@
             "index": "pypi",
             "version": "==0.8.0"
         },
+        "phonenumbers": {
+            "hashes": [
+                "sha256:3586f19abeb92aa6b539d7a4757cb507cf54efcd78224e895caf20fbdde07c26",
+                "sha256:67199749bbc5cb7c3a09f623e29f23dc294df6582968841f1ca2acbc06faafc1"
+            ],
+            "index": "pypi",
+            "version": "==8.12.5"
+        },
         "psycopg2": {
             "hashes": [
                 "sha256:132efc7ee46a763e68a815f4d26223d9c679953cd190f1f218187cb60decf535",
@@ -386,13 +410,6 @@
             "index": "pypi",
             "version": "==2.23.0"
         },
-        "ruamel-yaml": {
-            "hashes": [
-                "sha256:0962fd7999e064c4865f96fb1e23079075f4a2a14849bcdc5cdba53a24f9759b"
-            ],
-            "index": "pypi",
-            "version": "==0.16.10"
-        },
         "ruamel-yaml-clib": {
             "hashes": [
                 "sha256:1e77424825caba5553bbade750cec2277ef130647d685c2b38f68bc03453bac6",
@@ -422,6 +439,7 @@
                 "sha256:0962fd7999e064c4865f96fb1e23079075f4a2a14849bcdc5cdba53a24f9759b",
                 "sha256:099c644a778bf72ffa00524f78dd0b6476bca94a1da344130f4bf3381ce5b954"
             ],
+            "index": "pypi",
             "version": "==0.16.10"
         },
         "ruamel.yaml.clib": {
