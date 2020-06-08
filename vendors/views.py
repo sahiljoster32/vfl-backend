@@ -5,9 +5,12 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import VendorViewSerializer, VendorCreateSerializer
+from .serializers import VendorViewSerializer, VendorCreateSerializer, VendorListSerializer
 from .models import Vendor
 from django.http import Http404
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
+
 
 # Create your views here.
 
@@ -42,8 +45,18 @@ class VendorCreateView(generics.GenericAPIView):
     serializer_class = VendorCreateSerializer
 
     def post(self, request):
-
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status.HTTP_200_OK)
+
+class VendorListView(generics.ListAPIView):
+    queryset = Vendor.objects.all()
+    serializer_class = VendorListSerializer
+    # filter_backends = [DjangoFilterBackend]
+    def get_queryset(self):
+        city = self.request.query_params.get('city')
+        products= self.request.query_params.get('products')
+        queryset = Vendor.objects.filter(city__iexact = city,products__icontains = products)
+        return queryset
+

@@ -8,6 +8,7 @@ class VendorViewSerializer(serializers.ModelSerializer):
         fields = ('id','name','products','address','city','pincode','phone','details')
         
 class VendorCreateSerializer(serializers.ModelSerializer):
+    
     def save(self, **kwargs):
         data = self.validated_data
         user = self.context['request'].user
@@ -23,3 +24,8 @@ class VendorCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vendor
         fields = ('id','name','products','address','city','pincode','phone','details')
+
+class VendorListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vendor
+        fields = '__all__'

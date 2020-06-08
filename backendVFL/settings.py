@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     "drf_yasg",
     "corsheaders",
-    'vendors'
+    'vendors',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -62,9 +63,11 @@ CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = "backendVFL.urls"
 
 REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.TokenAuthentication",
     )
+   
 }
 
 TEMPLATES = [
