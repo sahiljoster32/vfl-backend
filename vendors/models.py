@@ -13,7 +13,7 @@ class Vendor(models.Model):
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     pincode = models.PositiveIntegerField(validators=[MaxValueValidator(999999)])
-    phone = models.PositiveIntegerField(validators=[MaxValueValidator(9999999999)])
+    phone = models.BigIntegerField(validators=[MaxValueValidator(9999999999)])
     details = models.CharField(max_length=255)
 
     def __str__(self):
