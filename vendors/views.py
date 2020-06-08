@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import VendorViewSerializer, VendorCreateSerializer, VendorListSerializer
+from .serializers import VendorViewSerializer, VendorCreateSerializer, VendorListSerializer, VendorSpecificListSerializer
 from .models import Vendor
 from django.http import Http404
 from rest_framework import filters
@@ -15,9 +15,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 # Create your views here.
 
 class VendorView(generics.GenericAPIView):
-    permission_classes = (permissions.AllowAny, )
-    serializer_class = VendorViewSerializer
-
+    serializer_class = VendorViewSerializer  
+    permission_classes= (permissions.AllowAny,)
     def get_object(self, pk):
         try:
             vendor = Vendor.objects.filter(pk=pk)
@@ -29,14 +28,24 @@ class VendorView(generics.GenericAPIView):
     def get(self, request, pk):
         vendor = self.get_object(pk)
         serializer = self.get_serializer(vendor)
-
         return Response(serializer.data,status=status.HTTP_200_OK)
 
    
     def put(self,request,pk):
         pass
+
     def patch(self, request, pk):
-        pass
+        vendor = self.get_object(pk)
+        print(vendor.creator)
+        print(self.request.user)
+        if(vendor.creator == self.request.user):
+            serializer = VendorViewSerializer(vendor, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status = status.HTTP_401_UNAUTHORIZED)
+
     def delete(self,request,pk):
         pass
 
@@ -59,4 +68,14 @@ class VendorListView(generics.ListAPIView):
         products= self.request.query_params.get('products')
         queryset = Vendor.objects.filter(city__iexact = city,products__icontains = products)
         return queryset
+
+class VendorSpecificListView(generics.ListAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = VendorSpecificListSerializer
+
+    def get(self, request):
+        queryset = Vendor.objects.filter(creator=request.user)
+        response = self.get_serializer(queryset, many=True)
+        print(response.data)
+        return Response(response.data, status.HTTP_200_OK)
 

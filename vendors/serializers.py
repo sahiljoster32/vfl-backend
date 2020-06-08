@@ -29,3 +29,8 @@ class VendorListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vendor
         fields = '__all__'
+        
+class VendorSpecificListSerializer(serializers.ModelSerializer):
+     class Meta:
+        model = Vendor
+        fields = '__all__'
