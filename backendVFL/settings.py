@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "drf_yasg",
     "corsheaders",
     'vendors',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
