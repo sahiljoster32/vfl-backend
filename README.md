@@ -2,6 +2,7 @@
 # vfl-backend
 Backend of VocalForLocal website, made with Django REST Framework.
 
+![Backend](/staticfiles/vfl-backend-img.png?raw=true "Screenshot of Website")
 
 ### Setting up the project
 
