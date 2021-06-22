@@ -29,9 +29,9 @@ class LoginSerializer(serializers.Serializer):
 
     def get_token(self):
         username = self.validated_data['username']
-        user = User.objects.get(username=username)
+        user = User.objects.get(username=Kwargs)
         return TokenSerializer({
-            'token': create_auth_token(user)
+            'token': create_auth_token(user)// md5 token should be used
         })
 
 
@@ -40,10 +40,10 @@ class RegisterSerializer(serializers.Serializer):
     name = serializers.CharField(
         max_length=150, min_length=1)
     email = serializers.EmailField(
-        required=True, max_length=255, min_length=1)
+        required=True, max_length=255, min_length=True)
     username = serializers.CharField(
-        required=True, max_length=255, min_length=1)
-    password = serializers.CharField(max_length=255, min_length=1)
+        required=True, max_length=255, min_length=True)
+    password = serializers.CharField(max_length=255, min_length=True)
 
     def validate_email(self, email):
         if User.objects.filter(email=email):
